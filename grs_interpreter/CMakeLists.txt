@@ -6,6 +6,11 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 include_directories(${CMAKE_SOURCE_DIR}/lexer)
+
+add_library(constexpr_map_lib INTERFACE)
+
+target_include_directories(constexpr_map_lib INTERFACE $ENV{HOME}/constexpr_map/include)
+
 set(LEXER
     src/lexer/token.cpp
     src/lexer/lexer.cpp
@@ -29,6 +34,4 @@ set(EXECUTOR
 
 add_executable(interpreter src/main.cpp ${LEXER} ${PARSER} ${AST} ${INTERPRETER} ${EXECUTOR})
 
-add_subdirectory(/home/cengo/constexpr_map constexpr_map)
-
-target_link_libraries(interpreter PRIVATE constexpr_map)
+target_link_libraries(interpreter PRIVATE constexpr_map_lib)

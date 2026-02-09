@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <filesystem>
 #include <string>
 #include "lexer/lexer.hpp"
 #include "lexer/token.hpp"
@@ -8,6 +9,9 @@
 #include "interpreter/instruction_generator.hpp"
 #include "executor/executor.hpp"
 #include <typeinfo>
+
+namespace fs = std::filesystem;
+
 
 void printInstructions(const std::vector<grs_interpreter::Instruction>& instructions) {
     std::cout << "Commands:" << std::endl;
@@ -34,7 +38,11 @@ void printInstructions(const std::vector<grs_interpreter::Instruction>& instruct
 
 int main() {
 
- std::ifstream file("/home/cengo/grs-interpreter/grs_interpreter/tests/pos_type_convertion.txt");
+
+    fs::path testFile = "../tests/pos_type_convertion.txt";
+
+    std::ifstream file(testFile);
+
     if(!file.is_open()){
         std::cerr << "Error opening file." << std::endl;
         return 1;

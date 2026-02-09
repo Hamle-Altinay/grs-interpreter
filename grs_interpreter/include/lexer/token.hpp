@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
 #include <iostream>
-#include "constexpr_map/constexpr_map.hpp"
+#include "constexpr_map.hpp"
 
 namespace grs_lexer {
     enum class TokenType {
